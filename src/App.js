@@ -8,7 +8,7 @@ class App extends Component {
     super(props);
     this.state = { 
       shops: null,
-      isLoading: true,
+      isLoading: true
     };
   }
   async componentDidMount() {
@@ -19,6 +19,7 @@ class App extends Component {
         }
       });
       const data = await result.json();
+      console.log(data)
       this.setState({
         shops: data.results,
         isLoading: false,
@@ -32,10 +33,11 @@ class App extends Component {
     }
   }
   render() {
+    console.log(this.state)
     return (
       <div className="App">
         {
-          this.state.isLoading ? (<Loader />) : (<List />)
+          this.state.isLoading ? (<Loader />) : (<List shops={this.state.shops} />)
         }
         {
           this.state.isError && (<Error />)
