@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-import './App.css';
+import Loader from './components/Loader';
+import List from './components/List';
+import Error from './components/Error';
 
 class App extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = { 
-      shops: null
-     }
+      shops: null,
+      isLoading: true,
+    };
   }
   async componentDidMount() {
     try {
@@ -14,21 +17,29 @@ class App extends Component {
         headers: {
           Accept: 'application/json',
         }
-      })
+      });
       const data = await result.json();
-      console.log(data)
       this.setState({
-        shops: data.results
+        shops: data.results,
+        isLoading: false,
+        isError: false
       })
     }
     catch(err) {
-      console.log(err);
+      this.setState({
+        isError: true
+      });
     }
   }
   render() {
     return (
       <div className="App">
-        
+        {
+          this.state.isLoading ? (<Loader />) : (<List />)
+        }
+        {
+          this.state.isError && (<Error />)
+        }
       </div>
     );
   }
