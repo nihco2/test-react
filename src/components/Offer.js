@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const ItemOffer = styled.a`
   display: block;
@@ -11,7 +12,6 @@ const ItemOffer = styled.a`
 
 class Offer extends Component {
   render() {
-    console.log(this.props)
     return (
       <ItemOffer href="/">
         up to {this.props.maxoffer} {this.props.currency} offered
@@ -19,5 +19,11 @@ class Offer extends Component {
     );
   }
 }
+
+Offer.propTypes = {
+  maxoffer: PropTypes.string,
+  currency: PropTypes.string
+};
+  
 
 export default Offer;

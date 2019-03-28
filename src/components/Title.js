@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
+
 
 const ItemTitle = styled.h6`
   margin: 0;
@@ -17,5 +19,9 @@ class Title extends Component {
     );
   }
 }
+
+Title.propTypes = {
+  title: PropTypes.string
+};
 
 export default Title;

@@ -19,7 +19,6 @@ class App extends Component {
         }
       });
       const data = await result.json();
-      console.log(data)
       this.setState({
         shops: data.results,
         isLoading: false,
@@ -33,7 +32,6 @@ class App extends Component {
     }
   }
   render() {
-    console.log(this.state)
     return (
       <div className="App">
         {
